@@ -1,5 +1,6 @@
 const express = require("express");
 const expressHandlebars = require("express-handlebars");
+const path = require("path");
 
 const htmlRoutes = require("./routes/html-routes");
 const apiRoutes = require("./routes/api-routes");
@@ -15,7 +16,7 @@ app.set("view engine", "handlebars");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, "../views/images")));
 
 app.use(htmlRoutes);
 app.use(apiRoutes);
