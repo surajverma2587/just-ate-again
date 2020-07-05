@@ -1,1 +1,21 @@
-console.log("YES");
+const express = require("express");
+const expressHandlebars = require("express-handlebars");
+
+const htmlRoutes = require("./routes/html-routes");
+
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.engine("handlebars", expressHandlebars({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(htmlRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server listening on: http://localhost:${PORT}`);
+});
