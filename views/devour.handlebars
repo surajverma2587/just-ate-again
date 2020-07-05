@@ -42,24 +42,9 @@
       <div class="col-6 text-center">
         <h3>Takeaway options</h3>
         <div class="text-center mt-4">
-          <div class="card mb-3 mx-5">
-            <div class="card-body">
-              <h5 class="card-title">{name}</h5>
-              <button class="btn btn-danger" id="{id}">Devour</button>
-            </div>
-          </div>
-          <div class="card mb-3 mx-5">
-            <div class="card-body">
-              <h5 class="card-title">{name}</h5>
-              <button class="btn btn-danger" id="{id}">Devour</button>
-            </div>
-          </div>
-          <div class="card mb-3 mx-5">
-            <div class="card-body">
-              <h5 class="card-title">{name}</h5>
-              <button class="btn btn-danger" id="{id}">Devour</button>
-            </div>
-          </div>
+          {{#each foods}}
+          {{> food/takeaway}}
+          {{/each}}
         </div>
       </div>
       <div class="col-6 text-center">

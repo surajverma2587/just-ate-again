@@ -1,9 +1,14 @@
 const express = require("express");
 
+const food = require("../models/food");
+
 const router = express.Router();
 
 router.get("/", function (req, res) {
-  res.render("devour", {});
+  const cb = (foods) => {
+    res.render("devour", { foods });
+  };
+  food.takeaway(cb);
 });
 
 module.exports = router;
