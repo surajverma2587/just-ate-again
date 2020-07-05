@@ -11,6 +11,13 @@ router.get("/api/foods", (req, res) => {
   food.takeaway(cb);
 });
 
+router.get("/api/devouredFoods", (req, res) => {
+  const cb = (devouredFoods) => {
+    res.json({ devouredFoods });
+  };
+  food.devoured(cb);
+});
+
 router.post("/api/foods", (req, res) => {
   res.json({
     message: "POST Food",
