@@ -24,10 +24,10 @@
         <img class="img-fluid" alt="takeaway banner" src="takeawayBanner.png" />
       </div>
       <div class="col-6 align-self-center">
-        <form class="form-inline">
+        <form class="form-inline" action="/api/foods" method="POST">
           <div class="form-group mx-sm-3 mb-2">
             <label for="foodOption" class="mr-2">Add a takeaway option!</label>
-            <input type="text" class="form-control" id="foodOption" placeholder="Wigan Kebab" />
+            <input type="text" class="form-control" id="foodOption" placeholder="Wigan Kebab" name="food" />
           </div>
           <button type="submit" class="btn btn-success mb-2">
             Add Option

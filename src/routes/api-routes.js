@@ -12,9 +12,11 @@ router.get("/api/foods", (req, res) => {
 });
 
 router.post("/api/foods", (req, res) => {
-  res.json({
-    message: "POST Food",
-  });
+  const payload = req.body;
+  const cb = (result) => {
+    res.redirect("/view");
+  };
+  food.restock(payload, cb);
 });
 
 router.put("/api/foods/:id", (req, res) => {

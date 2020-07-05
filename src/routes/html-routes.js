@@ -4,7 +4,7 @@ const food = require("../models/food");
 
 const router = express.Router();
 
-router.get("/", function (req, res) {
+router.get("/view", function (req, res) {
   const cb = (result) => {
     res.render("devour", result);
   };

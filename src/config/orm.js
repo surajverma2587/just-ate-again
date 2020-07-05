@@ -14,8 +14,20 @@ const getAll = (cb) => {
   connection.query(query, onQuery);
 };
 
+const insert = (food, cb) => {
+  const query = `INSERT INTO foods (name) VALUES ("${food}")`;
+
+  const onQuery = (err, rows) => {
+    if (err) throw err;
+    cb(rows);
+  };
+
+  connection.query(query, onQuery);
+};
+
 const orm = {
   getAll,
+  insert,
 };
 
 module.exports = orm;
