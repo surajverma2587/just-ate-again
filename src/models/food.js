@@ -1,7 +1,7 @@
 const orm = require("../config/orm");
 
 const takeaway = (cb) => {
-  orm.getAll("foods", cb);
+  orm.getAll(cb);
 };
 
 const devoured = (cb) => {

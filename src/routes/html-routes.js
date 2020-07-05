@@ -5,8 +5,8 @@ const food = require("../models/food");
 const router = express.Router();
 
 router.get("/", function (req, res) {
-  const cb = (foods) => {
-    res.render("devour", { foods });
+  const cb = (result) => {
+    res.render("devour", result);
   };
   food.takeaway(cb);
 });

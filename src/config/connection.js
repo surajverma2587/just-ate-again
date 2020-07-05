@@ -6,6 +6,7 @@ const dbOptions = {
   user: "root",
   password: "password",
   database: "takeaway_db",
+  multipleStatements: true,
 };
 
 const connection = mysql.createConnection(dbOptions);

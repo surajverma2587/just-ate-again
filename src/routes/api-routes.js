@@ -5,17 +5,10 @@ const food = require("../models/food");
 const router = express.Router();
 
 router.get("/api/foods", (req, res) => {
-  const cb = (foods) => {
-    res.json({ foods });
+  const cb = (result) => {
+    res.json(result);
   };
   food.takeaway(cb);
-});
-
-router.get("/api/devouredFoods", (req, res) => {
-  const cb = (devouredFoods) => {
-    res.json({ devouredFoods });
-  };
-  food.devoured(cb);
 });
 
 router.post("/api/foods", (req, res) => {
