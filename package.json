@@ -4,6 +4,7 @@
   "description": "Burgers and more...",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
   "repository": {
@@ -19,6 +20,10 @@
   "homepage": "https://github.com/surajverma2587/just-ate-again#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-handlebars": "^4.0.5",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
