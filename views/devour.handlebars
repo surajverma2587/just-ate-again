@@ -24,10 +24,10 @@
         <img class="img-fluid" alt="takeaway banner" src="takeawayBanner.png" />
       </div>
       <div class="col-6 align-self-center">
-        <form class="form-inline">
+        <form class="form-inline" action="/api/foods" method="POST">
           <div class="form-group mx-sm-3 mb-2">
             <label for="foodOption" class="mr-2">Add a takeaway option!</label>
-            <input type="text" class="form-control" id="foodOption" placeholder="Wigan Kebab" />
+            <input type="text" class="form-control" id="foodOption" placeholder="Wigan Kebab" name="food" />
           </div>
           <button type="submit" class="btn btn-success mb-2">
             Add Option
@@ -50,30 +50,9 @@
       <div class="col-6 text-center">
         <h3>Devoured Food</h3>
         <div class="text-center mt-4">
-          <div class="card mb-3 mx-5 bg-info text-white">
-            <div class="card-body">
-              <h5 class="card-title">{name}</h5>
-              <h6 class="card-subtitle mb-2 font-italic">
-                DEVOURED
-              </h6>
-            </div>
-          </div>
-          <div class="card mb-3 mx-5 bg-info text-white">
-            <div class="card-body">
-              <h5 class="card-title">{name}</h5>
-              <h6 class="card-subtitle mb-2 font-italic">
-                DEVOURED
-              </h6>
-            </div>
-          </div>
-          <div class="card mb-3 mx-5 bg-info text-white">
-            <div class="card-body">
-              <h5 class="card-title">{name}</h5>
-              <h6 class="card-subtitle mb-2 font-italic">
-                DEVOURED
-              </h6>
-            </div>
-          </div>
+          {{#each devouredFoods}}
+          {{> food/devoured}}
+          {{/each}}
         </div>
       </div>
     </div>

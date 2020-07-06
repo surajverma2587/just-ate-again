@@ -5,16 +5,18 @@ const food = require("../models/food");
 const router = express.Router();
 
 router.get("/api/foods", (req, res) => {
-  const cb = (foods) => {
-    res.json({ foods });
+  const cb = (result) => {
+    res.json(result);
   };
   food.takeaway(cb);
 });
 
 router.post("/api/foods", (req, res) => {
-  res.json({
-    message: "POST Food",
-  });
+  const payload = req.body;
+  const cb = (result) => {
+    res.redirect("/view");
+  };
+  food.restock(payload, cb);
 });
 
 router.put("/api/foods/:id", (req, res) => {
