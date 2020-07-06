@@ -14,8 +14,8 @@ const getAll = (cb) => {
   connection.query(query, onQuery);
 };
 
-const insert = (food, cb) => {
-  const query = `INSERT INTO foods (name) VALUES ("${food}")`;
+const insert = (table, cols, values, cb) => {
+  const query = `INSERT INTO ${table} (${cols}) VALUES (${values})`;
 
   const onQuery = (err, rows) => {
     if (err) throw err;
