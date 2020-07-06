@@ -25,7 +25,7 @@ const productionOptions = {
 
 let sequelize;
 
-if (process.env.APP_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   sequelize = new Sequelize(
     process.env.DATABASE,
     process.env.USERNAME,
