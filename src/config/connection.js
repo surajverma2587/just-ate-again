@@ -4,6 +4,7 @@ const dbOptions = {
   host: "localhost",
   port: 3306,
   dialect: "mysql",
+  use_env_variable: "JAWSDB_URL",
   pool: {
     max: 5,
     min: 0,
