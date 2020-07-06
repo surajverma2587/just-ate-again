@@ -1,21 +1,16 @@
-const mysql = require("mysql");
+const Sequelize = require("sequelize");
 
 const dbOptions = {
   host: "localhost",
   port: 3306,
-  user: "root",
-  password: "password",
-  database: "takeaway_db",
-  multipleStatements: true,
+  dialect: "mysql",
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000,
+  },
 };
 
-const connection = mysql.createConnection(dbOptions);
+const sequelize = new Sequelize("takeaway_db", "root", "password", dbOptions);
 
-const onConnect = (err) => {
-  if (err) throw err;
-  console.log("Successfully connected to the DB");
-};
-
-connection.connect(onConnect);
-
-module.exports = connection;
+module.exports = sequelize;
