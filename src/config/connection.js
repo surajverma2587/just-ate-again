@@ -1,7 +1,18 @@
 const Sequelize = require("sequelize");
 
-const dbOptions = {
+const localOptions = {
   host: "localhost",
+  port: 3306,
+  dialect: "mysql",
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000,
+  },
+};
+
+const productionOptions = {
+  host: process.env.HOSTNAME,
   port: 3306,
   dialect: "mysql",
   use_env_variable: "JAWSDB_URL",
@@ -12,6 +23,17 @@ const dbOptions = {
   },
 };
 
-const sequelize = new Sequelize("takeaway_db", "root", "password", dbOptions);
+let sequelize;
+
+if (process.env.APP_ENV === "production") {
+  sequelize = new Sequelize(
+    process.env.DATABASE,
+    process.env.USERNAME,
+    process.env.PASSWORD,
+    productionOptions
+  );
+} else {
+  sequelize = new Sequelize("takeaway_db", "root", "password", localOptions);
+}
 
 module.exports = sequelize;
