@@ -1,21 +1,39 @@
-const mysql = require("mysql");
+const Sequelize = require("sequelize");
 
-const dbOptions = {
+const localOptions = {
   host: "localhost",
   port: 3306,
-  user: "root",
-  password: "password",
-  database: "takeaway_db",
-  multipleStatements: true,
+  dialect: "mysql",
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000,
+  },
 };
 
-const connection = mysql.createConnection(dbOptions);
-
-const onConnect = (err) => {
-  if (err) throw err;
-  console.log("Successfully connected to the DB");
+const productionOptions = {
+  host: process.env.HOSTNAME,
+  port: 3306,
+  dialect: "mysql",
+  use_env_variable: "JAWSDB_URL",
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000,
+  },
 };
 
-connection.connect(onConnect);
+let sequelize;
 
-module.exports = connection;
+if (process.env.APP_ENV === "production") {
+  sequelize = new Sequelize(
+    process.env.DATABASE,
+    process.env.USERNAME,
+    process.env.PASSWORD,
+    productionOptions
+  );
+} else {
+  sequelize = new Sequelize("takeaway_db", "root", "password", localOptions);
+}
+
+module.exports = sequelize;

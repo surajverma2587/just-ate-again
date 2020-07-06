@@ -1,30 +1,45 @@
 const express = require("express");
 
-const food = require("../models/food");
+const Food = require("../models/food");
 
 const router = express.Router();
 
 router.get("/api/foods", (req, res) => {
-  const cb = (result) => {
-    res.json(result);
+  const onFindAll = (results) => {
+    const devouredFoods = results.filter((result) => result.isDevoured === "1");
+    const foods = results.filter((result) => result.isDevoured === "0");
+    res.json({ foods, devouredFoods });
   };
-  food.takeaway(cb);
+  Food.findAll({}).then(onFindAll);
 });
 
 router.post("/api/foods", (req, res) => {
   const payload = req.body;
-  const cb = () => {
+
+  const onCreate = () => {
     res.redirect("/view");
   };
-  food.restock(payload, cb);
+
+  Food.create(payload).then(onCreate);
 });
 
-router.post("/api/foods/:id", (req, res) => {
+router.put("/api/foods/:id", (req, res) => {
   const { id } = req.params;
-  const cb = () => {
-    res.redirect("/view");
+
+  const onUpdate = () => {
+    res.end();
   };
-  food.devour(id, cb);
+
+  Food.update(
+    {
+      isDevoured: true,
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  ).then(onUpdate);
 });
 
 module.exports = router;

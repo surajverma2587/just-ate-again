@@ -1,26 +1,21 @@
-const orm = require("../config/orm");
+const Sequelize = require("sequelize");
 
-const takeaway = (cb) => {
-  orm.getAll(cb);
+const sequelize = require("../config/connection.js");
+
+const schema = {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  isDevoured: {
+    type: Sequelize.STRING,
+    defaultValue: false,
+    field: "is_devoured",
+  },
 };
 
-const devoured = (cb) => {
-  orm.getAll("devoured_foods", cb);
-};
+const Food = sequelize.define("food", schema);
 
-const restock = ({ food }, cb) => {
-  orm.insert("foods", "name", food, cb);
-};
+Food.sync();
 
-const devour = (id, cb) => {
-  orm.insert("devoured_foods", "food_id, is_devoured", `${id}, TRUE`, cb);
-};
-
-const food = {
-  takeaway,
-  devoured,
-  restock,
-  devour,
-};
-
-module.exports = food;
+module.exports = Food;
