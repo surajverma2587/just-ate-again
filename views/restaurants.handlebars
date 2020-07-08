@@ -1,0 +1,13 @@
+<div class="container">
+  {{> head }}
+
+  <section>
+    <h2 class="text-center">Restaurant List</h2>
+
+    <div class="row">
+      {{#each restaurants}}
+      {{> restaurant/restaurant}}
+      {{/each}}
+    </div>
+  </section>
+</div>

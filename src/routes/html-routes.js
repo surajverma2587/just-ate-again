@@ -1,6 +1,7 @@
 const express = require("express");
 
 const Food = require("../models/food");
+// const restaurant = require("../models/restaurant");
 
 const router = express.Router();
 
@@ -13,9 +14,17 @@ router.get("/deprecated_v1", (req, res) => {
   Food.findAll({ raw: true }).then(onFindAll);
 });
 
-router.get("/restaurant_list", (req, res) => {
-  const foo = {};
-  res.render("restaurant_list", { foo });
+router.get("/restaurants", async (req, res) => {
+  try {
+    const restaurants = await restaurant.findAll({
+      raw: true,
+    });
+
+    res.render("restaurants", { restaurants });
+  } catch (error) {
+    console.log("Restaurants 500 Error: ", error.message);
+    res.render("error");
+  }
 });
 
 router.get("/menu/:id", (req, res) => {

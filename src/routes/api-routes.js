@@ -1,6 +1,7 @@
 const express = require("express");
 
 const Food = require("../models/food");
+const restaurant = require("../models/restaurant");
 
 const router = express.Router();
 
@@ -40,6 +41,17 @@ router.put("/api/foods/:id", (req, res) => {
       },
     }
   ).then(onUpdate);
+});
+
+router.get("/api/restaurants", async (req, res) => {
+  try {
+    const restaurants = await restaurant.findAll({
+      raw: true,
+    });
+    res.json({ restaurants });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 });
 
 module.exports = router;
