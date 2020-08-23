@@ -33,7 +33,12 @@ if (process.env.NODE_ENV === "production") {
     productionOptions
   );
 } else {
-  sequelize = new Sequelize("takeaway_db", "root", "password", localOptions);
+  sequelize = new Sequelize(
+    "takeaway_db",
+    "root",
+    "Manchester123",
+    localOptions
+  );
 }
 
 module.exports = sequelize;
