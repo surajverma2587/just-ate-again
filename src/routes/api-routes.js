@@ -18,7 +18,7 @@ router.post("/api/foods", (req, res) => {
   const payload = req.body;
 
   const onCreate = () => {
-    res.redirect("/view");
+    res.status(201).send({ message: "this works" });
   };
 
   Food.create(payload).then(onCreate);
