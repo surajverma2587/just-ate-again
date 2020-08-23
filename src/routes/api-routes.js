@@ -13,6 +13,16 @@ router.get("/api/foods", (req, res) => {
   Food.findAll({}).then(onFindAll);
 });
 
+router.post("/api/foods", (req, res) => {
+  const payload = req.body;
+
+  const onCreate = () => {
+    res.status(201).send({ message: "successfully created" });
+  };
+
+  Food.create(payload).then(onCreate);
+});
+
 router.put("/api/foods/:id", (req, res) => {
   const { id } = req.params;
 
